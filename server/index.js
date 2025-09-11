@@ -8,6 +8,7 @@ const connectDB = require("./utlis/db");
 
 app.use(express.json())
 
+// this is the best method
 app.get("/",(resq,res)=>{
     res.status(200).send("<h1>Welcome to the home page</h1>")
 })
