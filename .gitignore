@@ -1,4 +1,11 @@
-# todo node_modules
-client/node_modules
-server/node_modules
-*.env
+# Ignore node_modules everywhere
+**/node_modules
+
+# Ignore all .env files
+**/.env
+
+# Optional: also ignore log files
+*.log
+
+# Optional: macOS / system files
+.DS_Store
