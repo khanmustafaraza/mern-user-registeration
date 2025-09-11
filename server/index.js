@@ -4,6 +4,7 @@ const express = require("express");
 const app = express();
 
 const authrouter = require("./router/auth-router");
+
 const connectDB = require("./utlis/db");
 
 app.use(express.json());
@@ -15,7 +16,7 @@ app.get("/", (resq, res) => {
 // todo all middleware
 app.use("/api/auth", authrouter);
 
-// creating the sever request at home
+// todo >>>>>>>>>>>>>>> server instance >>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 const PORT = 5000;
 connectDB().then(() => {
