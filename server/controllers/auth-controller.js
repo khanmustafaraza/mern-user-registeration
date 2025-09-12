@@ -1,4 +1,5 @@
 const User = require("../models/user-model");
+const bcrypt = require("bcryptjs")
 
 const home = async (req, res) => {
   try {
@@ -35,7 +36,7 @@ const register = async (req, res) => {
     //   const savedUser = await User.create(userObj)
 
     if (savedUser) {
-      res.status(200).json({
+      res.status(201).json({
         msg: "Account Created Successfully",
         token: savedUser.generateToken(),
         userId: savedUser._id.toString(),
@@ -46,4 +47,35 @@ const register = async (req, res) => {
   }
 };
 
-module.exports = { home, register };
+//todo login controller
+
+const login = async(req,res)=>{
+  try {
+    const {email,password} = req.body;
+  const userExist = await User.findOne({email})
+  if(!userExist){
+    return res.status(400).json({
+      msg:"Invalid Credentials Email Or Password"
+    })
+  }
+  const verifiedPassword = await bcrypt.compare(password,userExist.password)
+  console.log(verifiedPassword)
+  if(!verifiedPassword){
+    return res.status(400).json({
+      msg:"Invalid Credentials Email Or Password"
+    })
+  }
+   
+      res.status(201).json({
+        msg: "Login Successfully",
+        token: userExist.generateToken(),
+        userId: userExist._id.toString(),
+      });
+    
+  } catch (error) {
+    console.log(error)
+    
+  }
+}
+
+module.exports = { home, register,login };

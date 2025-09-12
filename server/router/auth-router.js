@@ -11,5 +11,8 @@ router.route("/index").get(authController.home);
 router
   .route("/register")
   .post(validate(registerSchema), authController.register);
+router
+  .route("/login")
+  .post(authController.login);
 
 module.exports = router;
