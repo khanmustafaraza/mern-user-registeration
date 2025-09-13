@@ -4,6 +4,7 @@ const express = require("express");
 const app = express();
 
 const authrouter = require("./router/auth-router");
+const contactrouter = require("./router/contact-router")
 
 const connectDB = require("./utlis/db");
 
@@ -15,6 +16,7 @@ app.get("/", (resq, res) => {
 
 // todo all middleware
 app.use("/api/auth", authrouter);
+app.use("/api/contact", contactrouter);
 
 // todo >>>>>>>>>>>>>>> server instance >>>>>>>>>>>>>>>>>>>>>>>>>>>
 
