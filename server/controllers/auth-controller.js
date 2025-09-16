@@ -1,5 +1,5 @@
 const User = require("../models/user-model");
-const bcrypt = require("bcryptjs")
+const bcrypt = require("bcryptjs");
 
 const home = async (req, res) => {
   try {
@@ -49,33 +49,42 @@ const register = async (req, res) => {
 
 //todo login controller
 
-const login = async(req,res)=>{
+const login = async (req, res) => {
   try {
-    const {email,password} = req.body;
-  const userExist = await User.findOne({email})
-  if(!userExist){
-    return res.status(400).json({
-      msg:"Invalid Credentials Email Or Password"
-    })
-  }
-  const verifiedPassword = await bcrypt.compare(password,userExist.password)
-  console.log(verifiedPassword)
-  if(!verifiedPassword){
-    return res.status(400).json({
-      msg:"Invalid Credentials Email Or Password"
-    })
-  }
-   
-      res.status(201).json({
-        msg: "Login Successfully",
-        token: userExist.generateToken(),
-        userId: userExist._id.toString(),
+    const { email, password } = req.body;
+    const userExist = await User.findOne({ email });
+    if (!userExist) {
+      return res.status(400).json({
+        msg: "Invalid Credentials Email Or Password",
       });
-    
-  } catch (error) {
-    console.log(error)
-    
-  }
-}
+    }
+    const verifiedPassword = await bcrypt.compare(password, userExist.password);
+    console.log(verifiedPassword);
+    if (!verifiedPassword) {
+      return res.status(400).json({
+        msg: "Invalid Credentials Email Or Password",
+      });
+    }
 
-module.exports = { home, register,login };
+    res.status(201).json({
+      msg: "Login Successfully",
+      token: userExist.generateToken(),
+      userId: userExist._id.toString(),
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const userData = async (req, res) => {
+  try {
+    const { userId, email, isAdmin } = req.user;
+    const exsistUser = await User.findOne({ _id: userId }, { password: 0 });
+    console.log(exsistUser);
+    res.status(200).json(exsistUser);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+module.exports = { home, register, login, userData };

@@ -37,7 +37,7 @@ userSchema.methods.generateToken = function () {
   const token = jwt.sign(
     { userId: this._id.toString(), email: this.email, isAdmin: this.isAdmin }, // payload
     process.env.JWT_SECRET, // secret key (from .env)
-    { expiresIn: "1h" } // token expiry time
+    { expiresIn: "1m" } // token expiry time
   );
   return token;
 };

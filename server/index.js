@@ -1,14 +1,16 @@
 require("dotenv").config();
 const express = require("express");
+const cors = require("cors");
 
 const app = express();
 
 const authrouter = require("./router/auth-router");
-const contactrouter = require("./router/contact-router")
+const contactrouter = require("./router/contact-router");
 
 const connectDB = require("./utlis/db");
 
 app.use(express.json());
+app.use(cors());
 
 app.get("/", (resq, res) => {
   res.status(200).send("<h1>Welcome to the home page</h1>");
