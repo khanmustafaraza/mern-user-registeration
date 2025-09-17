@@ -1,7 +1,9 @@
 import React from "react";
 import { FaLaptopCode, FaBook, FaChalkboardTeacher } from "react-icons/fa";
+import { useTheme } from "../store/theme";
 
 const Features = () => {
+  const { toggleTheme, theme } = useTheme();
   return (
     <div className="container my-5">
       <div className="text-center mb-4">

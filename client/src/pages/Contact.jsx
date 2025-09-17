@@ -50,7 +50,7 @@ const Contact = () => {
           {/* Contact Form */}
           <div className="col-md-6 mb-4">
             <h2 className="fw-bold text-primary mb-4">Get in Touch</h2>
-            <p className="text-muted">
+            <p className="">
               Have questions, feedback, or collaboration ideas? Fill out the
               form below and we’ll get back to you as soon as possible.
             </p>
@@ -115,7 +115,7 @@ const Contact = () => {
             <img
               src="https://img.freepik.com/free-vector/contact-us-concept-illustration_114360-2299.jpg"
               alt="Contact illustration"
-              className="img-fluid rounded shadow"
+              className="img-fluid"
             />
           </div>
         </div>

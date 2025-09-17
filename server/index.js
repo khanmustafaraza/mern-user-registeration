@@ -4,21 +4,27 @@ const cors = require("cors");
 
 const app = express();
 
-const authrouter = require("./router/auth-router");
-const contactrouter = require("./router/contact-router");
+const authRouter = require("./router/auth-router");
+const contactRouter = require("./router/contact-router");
+const userRouter = require("./router/user-router");
 
 const connectDB = require("./utlis/db");
+const errorMiddleware = require("./middlewares/error-middleware");
 
 app.use(express.json());
+// todo use cors midddleware to resolve cors issue
 app.use(cors());
 
-app.get("/", (resq, res) => {
+app.get("/", (req, res) => {
   res.status(200).send("<h1>Welcome to the home page</h1>");
 });
 
 // todo all middleware
-app.use("/api/auth", authrouter);
-app.use("/api/contact", contactrouter);
+app.use("/api/auth", authRouter);
+app.use("/api/contact", contactRouter);
+app.use("/api/users", userRouter);
+
+app.use(errorMiddleware);
 
 // todo >>>>>>>>>>>>>>> server instance >>>>>>>>>>>>>>>>>>>>>>>>>>>
 

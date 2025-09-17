@@ -2,21 +2,16 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../store/auth";
 import { FaMoon, FaSun } from "react-icons/fa";
+import { useTheme } from "../store/theme";
 
 const Navbar = () => {
   const { token } = useAuth();
-  const [darkMode, setDarkMode] = useState(false);
-
-  const toggleTheme = () => {
-    setDarkMode(!darkMode);
-    document.body.classList.toggle("bg-dark");
-    document.body.classList.toggle("text-light");
-  };
+  const { toggleTheme, theme } = useTheme();
 
   return (
     <nav
       className={`navbar navbar-expand-lg ${
-        darkMode ? "navbar-dark bg-dark" : "navbar-light bg-light"
+        theme ? "navbar-dark bg-dark" : "navbar-light bg-light"
       } shadow-sm`}
     >
       <div className="container-fluid">
@@ -65,13 +60,19 @@ const Navbar = () => {
               </li>
             ) : (
               <>
-                <li className="nav-item">
-                  <NavLink className="nav-link" to="/login">
+                <li className="nav-item mx-1">
+                  <NavLink
+                    className="px-4 py-2 bg-primary text-white text-decoration-none rounded-1"
+                    to="/login"
+                  >
                     Login
                   </NavLink>
                 </li>
-                <li className="nav-item">
-                  <NavLink className="nav-link" to="/register">
+                <li className="nav-item my-md-4 my-sm-4 my-4 my-lg-0">
+                  <NavLink
+                    className="px-4 py-2 bg-secondary text-white text-decoration-none rounded-1"
+                    to="/register"
+                  >
                     Register
                   </NavLink>
                 </li>
@@ -84,8 +85,8 @@ const Navbar = () => {
                 className="btn btn-outline-secondary d-flex align-items-center gap-2"
                 onClick={toggleTheme}
               >
-                {darkMode ? <FaSun /> : <FaMoon />}
-                {darkMode ? "Light" : "Dark"}
+                {theme ? <FaSun /> : <FaMoon />}
+                {theme ? "Light" : "Dark"}
               </button>
             </li>
           </ul>

@@ -11,7 +11,6 @@ const verifyToken = (req, res, next) => {
     }
 
     const tokenString = token.split(" ")[1];
-    console.log("first", tokenString);
 
     // Verify token
     const data = jwt.verify(tokenString, process.env.JWT_SECRET);
@@ -31,7 +30,7 @@ const verifyToken = (req, res, next) => {
     next();
   } catch (err) {
     console.error("Token verification failed:", err.message);
-    // Send 401 if token invalid or expired
+
     return res
       .status(401)
       .json({ error: "Invalid or expired token. Please login again." });

@@ -9,10 +9,8 @@ const registerSchema = require("../validators/auth-validators");
 //  home page route
 
 router.route("/index").get(authController.home);
-router
-  .route("/register")
-  .post(validate(registerSchema), authController.register);
+router.post("/register", validate(registerSchema), authController.register);
 router.route("/login").post(authController.login);
-router.route("/verify-token").get(verifyToken, authController.userData);
+router.get("/verify-token", verifyToken, authController.userData);
 
 module.exports = router;

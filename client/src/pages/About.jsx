@@ -9,15 +9,10 @@ import {
   FaMoon,
   FaSun,
 } from "react-icons/fa";
+import { useTheme } from "../store/theme";
 
 const About = () => {
-  const [darkMode, setDarkMode] = useState(false);
-
-  const toggleTheme = () => {
-    setDarkMode(!darkMode);
-    document.body.classList.toggle("bg-dark");
-    document.body.classList.toggle("text-light");
-  };
+  const { theme } = useTheme();
 
   return (
     <>
@@ -25,30 +20,20 @@ const About = () => {
 
       {/* Dark Mode Toggle */}
       <div className="container text-end mt-3">
-        <button
-          className="btn btn-outline-secondary d-flex align-items-center gap-2 ms-auto"
-          onClick={toggleTheme}
-        >
-          {darkMode ? <FaSun /> : <FaMoon />}
-          {darkMode ? "Light Mode" : "Dark Mode"}
-        </button>
+        <button className="btn btn-outline-secondary d-flex align-items-center gap-2 ms-auto"></button>
       </div>
 
       {/* Hero Section */}
-      <div
-        className={`container my-5 ${darkMode ? "text-light" : "text-dark"}`}
-      >
+      <div className={`container my-5 ${theme ? "text-light" : "text-dark"}`}>
         <div className="row align-items-center">
           {/* Text Section */}
           <div className="col-md-6 mb-4">
             <h1
-              className={`fw-bold mb-3 ${
-                darkMode ? "text-info" : "text-primary"
-              }`}
+              className={`fw-bold mb-3 ${theme ? "text-info" : "text-primary"}`}
             >
               About iCoder
             </h1>
-            <p className="text-muted">
+            <p className="">
               Welcome to <strong>iCoder</strong>, your go-to platform for
               learning, exploring, and mastering the world of coding. Our
               mission is to empower developers, students, and tech enthusiasts
@@ -79,7 +64,7 @@ const About = () => {
       <div className="container my-5">
         <div className="text-center mb-4">
           <h2 className="fw-bold">Our Mission & Vision</h2>
-          <p className="text-muted">
+          <p className="">
             We aim to bridge the gap between learners and technology by
             providing high-quality, easy-to-understand coding resources.
           </p>
@@ -88,12 +73,12 @@ const About = () => {
           <div className="col-md-6 mb-3">
             <div
               className={`card shadow-sm p-4 border-0 h-100 ${
-                darkMode ? "bg-secondary text-light" : ""
+                theme ? "bg-secondary text-light" : ""
               }`}
             >
               <FaLightbulb size={40} className="text-warning mb-3" />
               <h5 className="fw-bold">Our Mission</h5>
-              <p className="text-muted">
+              <p className="">
                 To make coding education accessible, affordable, and engaging
                 for everyone around the globe.
               </p>
@@ -102,12 +87,12 @@ const About = () => {
           <div className="col-md-6 mb-3">
             <div
               className={`card shadow-sm p-4 border-0 h-100 ${
-                darkMode ? "bg-secondary text-light" : ""
+                theme ? "bg-secondary text-light" : ""
               }`}
             >
               <FaLaptopCode size={40} className="text-primary mb-3" />
               <h5 className="fw-bold">Our Vision</h5>
-              <p className="text-muted">
+              <p className="">
                 To build a community of skilled programmers and innovators
                 shaping the future with technology.
               </p>
@@ -142,7 +127,7 @@ const About = () => {
             <div className="col-md-4 mb-3" key={i}>
               <div
                 className={`card shadow-sm p-4 border-0 h-100 ${
-                  darkMode ? "bg-secondary text-light" : ""
+                  theme ? "bg-secondary text-light" : ""
                 }`}
               >
                 {card.icon}
@@ -180,7 +165,7 @@ const About = () => {
             <div className="col-md-4 mb-3" key={i}>
               <div
                 className={`card shadow-sm border-0 h-100 ${
-                  darkMode ? "bg-secondary text-light" : ""
+                  theme ? "bg-secondary text-light" : ""
                 }`}
               >
                 <img

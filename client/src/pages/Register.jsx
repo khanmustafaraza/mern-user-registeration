@@ -3,9 +3,11 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
 import { FaUser, FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
+import { useAuth } from "../store/auth";
 
 const Register = () => {
   const navigate = useNavigate();
+  const { setTokenInLS, setToken } = useAuth();
   const [user, setUser] = useState({
     username: "",
     email: "",
@@ -35,7 +37,9 @@ const Register = () => {
         const data = await res.json();
         console.log(data);
         alert("✅ Account created successfully!");
-        navigate("/login");
+        setToken(data.token);
+        setTokenInLS(data.token);
+        navigate("/");
       }
     } catch (error) {
       console.log(error);
