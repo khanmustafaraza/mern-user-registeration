@@ -6,8 +6,8 @@
   padding: 0;
   box-sizing: border-box;
    font-family: "Open Sans", sans-serif;
-    font-family: "Roboto", sans-serif;
-     font-family: "AR One Sans", sans-serif;
+    /* font-family: "Roboto", sans-serif;
+     font-family: "AR One Sans", sans-serif; */
 }
 body{
 overflow-x: hidden;
@@ -15,8 +15,8 @@ overflow-x: hidden;
 }
 
 .row {
-  --bs-gutter-x: 2px !important;
-  --bs-gutter-y: 0;
+  --bs-gutter-x: 8px !important;
+  --bs-gutter-y: 19px !important;
   display: flex;
   flex-wrap: wrap;
   margin-top: calc(-1 * var(--bs-gutter-y));

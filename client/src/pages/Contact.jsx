@@ -35,9 +35,22 @@ const Contact = () => {
   };
 
   // ✅ Handle form submit
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Message Sent:", userData);
+    // console.log(userData);
+    const res = await fetch(
+      "http://localhost:5000/api/contact/create-new-contact",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userData),
+      }
+    );
+    const data = await res.json();
+    console.log(data);
+    // console.log("Message Sent:", userData);
     // send to backend here...
     setUserData({ ...userData, message: "" }); // clear message after submit
   };

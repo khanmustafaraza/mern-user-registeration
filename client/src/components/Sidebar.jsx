@@ -21,12 +21,12 @@ const Sidebar = () => {
       name: "Contact",
       link: "/admin/contacts",
     },
-    {
-      id: 3,
-      icon: "build",
-      name: "Services",
-      link: "/admin/services",
-    },
+    // {
+    //   id: 3,
+    //   icon: "build",
+    //   name: "Services",
+    //   link: "/admin/services",
+    // },
   ];
 
   return (
